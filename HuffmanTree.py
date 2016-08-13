@@ -1,21 +1,20 @@
 class HTNode():
     def __init__(self):
-        self.parent=None
-        self.lchild=None
-        self.rchild=None
-        self.weight=None
+        self.parent=0
+        self.lchild=0
+        self.rchild=0
+        self.weight=0
 
-w=[0,10,7,8,2]
+w=[0,10,8,7,2]
 
 def HuffmanCoding(w,n):
     m=2*n
-    p=HTNode()
-    ht=[p]*m
+    ht=['']*m
+    for i in range(m):
+        ht[i]=HTNode()
+
     for i in range(1,n+1):
         ht[i].weight=w[i]
-        ht[i].lchild=ht[i].rchild=ht[i].parent=0
-    for i in range(n+1,m):
-        ht[i].weight=ht[i].lchild=ht[i].rchild=ht[i].parent=0
     for i in range(n+1,m):
         p1=0
         p2=0
@@ -35,6 +34,39 @@ def HuffmanCoding(w,n):
         ht[i].lchild=p1
         ht[i].rchild=p2
         ht[i].weight=w1+w2
+
+
+    # for i in range(1,m):
+    #     print ht[i].parent,ht[i].weight,ht[i].lchild,ht[i].rchild
+    # ####encode
+    hc=['']*(n+1)
+    
+    import copy
+
+    for k in range(1,n+1):
+        start=0
+        cd=['']*n
+        c=k
+        f=ht[k].parent
+
+        while(f):
+            if ht[f].lchild==c:
+                cd[start]='0'
+                start+=1
+            else: 
+                cd[start]='1'
+                start+=1
+            c=f
+            f=ht[f].parent
+            # print k, f,cd
+        cd.reverse()
+        hc[k]=''.join(copy.deepcopy(cd))
+    return hc
+hc=HuffmanCoding(w,4)
+print hc
+
+
+
     
 
 
