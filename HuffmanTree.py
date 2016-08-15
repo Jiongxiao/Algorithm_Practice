@@ -38,7 +38,7 @@ def HuffmanCoding(w,n):
 
     # for i in range(1,m):
     #     print ht[i].parent,ht[i].weight,ht[i].lchild,ht[i].rchild
-    # ####encode
+    ####encode
     hc=['']*(n+1)
     
     import copy
